@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		22404BE31DAB4B2700C0C6DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22404BE21DAB4B2700C0C6DC /* AppDelegate.swift */; };
-		22404BE51DAB4B2700C0C6DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22404BE41DAB4B2700C0C6DC /* ViewController.swift */; };
 		22404BE81DAB4B2700C0C6DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22404BE61DAB4B2700C0C6DC /* Main.storyboard */; };
 		22404BEA1DAB4B2700C0C6DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22404BE91DAB4B2700C0C6DC /* Assets.xcassets */; };
 		22404BED1DAB4B2700C0C6DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22404BEB1DAB4B2700C0C6DC /* LaunchScreen.storyboard */; };
+		22404BF61DAB4CDC00C0C6DC /* TweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22404BF51DAB4CDC00C0C6DC /* TweetTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		22404BDF1DAB4B2700C0C6DC /* Smashag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smashag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22404BE21DAB4B2700C0C6DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		22404BE41DAB4B2700C0C6DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		22404BE71DAB4B2700C0C6DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		22404BE91DAB4B2700C0C6DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22404BEC1DAB4B2700C0C6DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22404BEE1DAB4B2700C0C6DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22404BF51DAB4CDC00C0C6DC /* TweetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +54,22 @@
 		22404BE11DAB4B2700C0C6DC /* Smashag */ = {
 			isa = PBXGroup;
 			children = (
-				22404BE21DAB4B2700C0C6DC /* AppDelegate.swift */,
-				22404BE41DAB4B2700C0C6DC /* ViewController.swift */,
 				22404BE61DAB4B2700C0C6DC /* Main.storyboard */,
+				22404BF51DAB4CDC00C0C6DC /* TweetTableViewController.swift */,
+				22404BF41DAB4C8C00C0C6DC /* Supporting files */,
+			);
+			path = Smashag;
+			sourceTree = "<group>";
+		};
+		22404BF41DAB4C8C00C0C6DC /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				22404BE21DAB4B2700C0C6DC /* AppDelegate.swift */,
 				22404BE91DAB4B2700C0C6DC /* Assets.xcassets */,
 				22404BEB1DAB4B2700C0C6DC /* LaunchScreen.storyboard */,
 				22404BEE1DAB4B2700C0C6DC /* Info.plist */,
 			);
-			path = Smashag;
+			name = "Supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +104,7 @@
 				TargetAttributes = {
 					22404BDE1DAB4B2700C0C6DC = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -136,8 +145,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22404BE51DAB4B2700C0C6DC /* ViewController.swift in Sources */,
 				22404BE31DAB4B2700C0C6DC /* AppDelegate.swift in Sources */,
+				22404BF61DAB4CDC00C0C6DC /* TweetTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,10 +267,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Smashag/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ml.gb.toy.Smashag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Smashag/Smashag-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -270,10 +282,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Smashag/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ml.gb.toy.Smashag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Smashag/Smashag-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
