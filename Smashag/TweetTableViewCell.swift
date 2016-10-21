@@ -18,7 +18,7 @@ class TweetTableViewCell: UITableViewCell {
     
     @IBOutlet weak var tweetScreenNameTable: UILabel!
     
-    var tweet:Tweet? {
+    var tweet:Twitter.Tweet? {
         didSet {
             updateUI()
         }

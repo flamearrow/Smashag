@@ -83,12 +83,17 @@
                     <navigationItem key="navigationItem" id="RTc-qO-wUx">
                         <nil key="title"/>
                         <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="twitter seach text field" textAlignment="natural" minimumFontSize="17" id="cjx-v1-rtG">
-                            <rect key="frame" x="8" y="7" width="359" height="30"/>
+                            <rect key="frame" x="8" y="7" width="275" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <barButtonItem key="rightBarButtonItem" title="Tweeters" id="n4V-v7-JvL">
+                            <connections>
+                                <segue destination="BLe-bF-pXh" kind="show" identifier="TweetersMentioningSegue" action="showDetailViewController:sender:" id="2qt-rK-oEh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tweetSearchTextField" destination="cjx-v1-rtG" id="7aQ-Oe-M2l"/>
@@ -97,6 +102,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cW3-nd-yxl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-330.39999999999998" y="-572.56371814092961"/>
+        </scene>
+        <!--Tweeters Table View Controller-->
+        <scene sceneID="WcV-E5-5vt">
+            <objects>
+                <tableViewController id="BLe-bF-pXh" customClass="TweetersTableViewController" customModule="Smashag" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6gn-lo-h8J">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mlgb" id="Wtz-yv-pht">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wtz-yv-pht" id="XxI-zq-EXV">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BLe-bF-pXh" id="w8v-sa-QCb"/>
+                            <outlet property="delegate" destination="BLe-bF-pXh" id="IJU-E9-kvx"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UI2-Bg-Eqr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="734" y="-574"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bJk-4Z-a9F">

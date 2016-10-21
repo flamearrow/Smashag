@@ -8,9 +8,13 @@
 
 import UIKit
 import Twitter
+import CoreData
 
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
-    var tweets = [Array<Tweet>]() {
+    // access CoreData
+    let managedObjectContext:NSManagedObjectContext? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    
+    var tweets = [Array<Twitter.Tweet>]() {
         didSet {
             // like adapter.notifydatasetchanged()
             tableView.reloadData()
@@ -44,17 +48,61 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         if let request = twitterRequest {
             lastTwitterRequest = request
             // trailing closure syntax
-            request.fetchTweets(handler: { [weak weakSelf = self] newTweets in
+            request.fetchTweets{ [weak weakSelf = self] newTweets in
                 DispatchQueue.main.async {
                     // this is fucked up ===
                     // check if the request comback is the one we requested, if not, drop it
                     if request === weakSelf?.lastTwitterRequest {
                         if !newTweets.isEmpty {
                             weakSelf?.tweets.insert(newTweets, at: 0)
+                            weakSelf?.updateDatabase(newTweets)
                         }
                     }
                 }
-            })
+            }
+            
+//                {
+//                [weak weakSelf = self] newTweets in
+//                DispatchQueue.main.async {
+//                    // check if the request comback is the one we requested, if not, drop it
+//                    if request === weakSelf?.lastTwitterRequest {
+//                        if !newTweets.isEmpty {
+//                            weakSelf?.tweets.insert(newTweets as! [Twitter.Tweet] , at: 0)
+//                        }
+//                    }
+//                }
+//            }
+            
+        }
+    }
+    
+    private func updateDatabase(_ newTweets:[Twitter.Tweet]) {
+        managedObjectContext?.perform {
+            for newTweet in newTweets {
+                //Tweet.insert
+                _ = Tweet.tweetWithTwitterInfo(twitterInfo: newTweet, inManagedObjectContext: self.managedObjectContext!)
+            }
+            
+            do {
+                // this is the actuall commit
+                try self.managedObjectContext!.save()
+            } catch let error {
+                print("\(error) happend during inserting a tweet")
+            }
+        }
+        printDBStatics()
+        print("Done printing DB")
+    }
+    
+    private func printDBStatics() {
+        managedObjectContext?.perform {
+            if let results = try?self.managedObjectContext!.fetch(TwitterUser.fetchRequest() as NSFetchRequest<TwitterUser>) {
+                print("\(results.count) TwitterUsers")
+            }
+            // ligher weight
+            if let tweetCount = try?self.managedObjectContext!.count(for: Tweet.fetchRequest()) {
+                print("\(tweetCount) Tweets")
+            }
         }
     }
     
